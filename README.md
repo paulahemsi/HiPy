@@ -90,6 +90,53 @@ string method `.replace` replace the char(s) passed as first parameter for the c
 
 `lstrip()` only trims leading whitespace
 
+## List
+
+Lists are one of the most powerful data types in Python. They’re used to store related items together.
+
+[List cheat sheet](https://practical.learnpython.dev/02_data_types/30_lists/) from Nina Zakharenko
+
+| type | list |
+| ---- | ---- |
+| use | Used for storing similar items, and in cases where items need to be added or removed |
+| creation | `[]` or `list()` for empty list, or `[1, 2, 3]` for a list with items |
+| search methods | `my_list.index(item)` or `item in my_list` |
+| search speed | Searching for an item in a large list is slow brcause each item must be checked |
+| common methods | `len(my_list)`, `append(item)` to add, `insert(index, item)` to insert at index, `pop()` to remove |
+| order preserved? | Yes. Items can be accessed by index. |
+| mutable? | yes |
+| in-place sortable?| Yes. `my_list.sort()` will sort the list in-place. `my_list.sort(reverse=True)` will sort the list in-place in descending order. `my_list.reverse()` will reverse the items in *my_list* in-place. |
+
+| action | method | returns | possible errors |
+| ------ | ------ | ------- | --------------- |
+| check length | `len(my_list)` | int |  |
+| **add** to the end | `my_list.append(item)` | - |  |
+| **insert** at position | `my_list.insert(pos, item)` | - |  |
+| **update** at position | `my_list[pos] = item` | - |  |
+| **extend**: add items from another list | `my_list.extend(other_list) | - | |
+| is item in list? | `item in my_list` | `true` or `false` | |
+| **index** of item | `my_list.index(item)` | int | `ValueError` if `item` is not in `my_list` |
+| **count** of item | `my_list.count(item)` | int | |
+| **remove** an item | `my_list.remove(item)` | - | `ValueError` if `item` is not in `my_list` |
+| **remove** the last item, or an item at an index| `my_list.pop()` or `my_list.pop(pos)`| `item` | `IndexError` if `pos` >= `len(my_list)` |
+
+### List x Array
+
+Font: [this article](https://learnpython.com/blog/python-array-vs-list/) from Kateryna Koidan
+
+| List | Array |
+| ---- | ----- |
+| built-in| import from *NumPy* package or *array* module |
+| ordered | ordered |
+| mutable | mutable |
+| able to store non-unique| able to store non-unique items |
+| elements can be of different data types | imported from *array module* elements must be of the same type|
+| elements can be of different data types | *NumPy* arrays support different data types|
+| don't need to be declared | need to be declared *array.array()* *numpy.array()*|
+| cannot directly handle math operations | are great for numerical operations |
+| less efficient for storing large amounts of data | can store data very compactly, more efficient |
+
+
 ## Helpufull REPL methods
 
 typeof() is `type()`
