@@ -63,6 +63,8 @@ two integers division will result in a float, to force the result to be integer,
 
 ## Strings
 
+strings are immutable
+
 `'` and `"` are acepted but `"` are better to nested `'` inside
 
 `\n` `\t` works like in C
@@ -94,7 +96,7 @@ string method `.replace` replace the char(s) passed as first parameter for the c
 
 Lists are one of the most powerful data types in Python. They’re used to store related items together.
 
-[List cheat sheet](https://practical.learnpython.dev/02_data_types/30_lists/) from Nina Zakharenko
+[List cheat sheet](https://practical.learnpython.dev/02_data_types/30_lists/) by Nina Zakharenko
 
 | type | list |
 | ---- | ---- |
@@ -107,6 +109,10 @@ Lists are one of the most powerful data types in Python. They’re used to store
 | mutable? | yes |
 | in-place sortable?| Yes. `my_list.sort()` will sort the list in-place. `my_list.sort(reverse=True)` will sort the list in-place in descending order. `my_list.reverse()` will reverse the items in *my_list* in-place. |
 
+to sort without change the original list, we can use `sorted(my_list)` or `sorted(my_list, reverse=True)` for reverse sorting
+
+`+` concatenates lists
+
 | action | method | returns | possible errors |
 | ------ | ------ | ------- | --------------- |
 | check length | `len(my_list)` | int |  |
@@ -118,11 +124,11 @@ Lists are one of the most powerful data types in Python. They’re used to store
 | **index** of item | `my_list.index(item)` | int | `ValueError` if `item` is not in `my_list` |
 | **count** of item | `my_list.count(item)` | int | |
 | **remove** an item | `my_list.remove(item)` | - | `ValueError` if `item` is not in `my_list` |
-| **remove** the last item, or an item at an index| `my_list.pop()` or `my_list.pop(pos)`| `item` | `IndexError` if `pos` >= `len(my_list)` |
+| **remove** the last item, or an item at an index| `my_list.pop()` or `my_list.pop(pos)`| `item` removed | `IndexError` if `pos` >= `len(my_list)` |
 
 ### List x Array
 
-Font: [this article](https://learnpython.com/blog/python-array-vs-list/) from Kateryna Koidan
+Font: [this article](https://learnpython.com/blog/python-array-vs-list/) by Kateryna Koidan
 
 | List | Array |
 | ---- | ----- |
@@ -136,6 +142,56 @@ Font: [this article](https://learnpython.com/blog/python-array-vs-list/) from Ka
 | cannot directly handle math operations | are great for numerical operations |
 | less efficient for storing large amounts of data | can store data very compactly, more efficient |
 
+## Tuple
+
+tuples are immutable
+
+[Tuplecheat sheet](https://practical.learnpython.dev/03_sets_tuples_dicts/10_tuples/) by Nina Zakharenko
+
+```
+Tuples are light-weight collections used to keep track of related, but different items.
+While lists are generally used to store collections of similar items together, tuples, by contrast, can be used to contain a snapshot of data. A good use of a tuple might be for storing the information for a row in a spreadsheet. We don’t necessarily care about updating or manipulating that data, we just want a read-only snapshot.
+```
+
+| type | tuple |
+| ---- | ---- |
+| use | Used for storing a snapshot of related items when we don’t plan on modifying, adding, or removing data |
+| creation | `(,)` or `tuple()` for empty tuple. `(1, )` for one item, or `(1, 2, 3)` for a tuple with several items |
+| search methods | `my_tuple.index(item)` or `item in my_tuple` |
+| search speed | Searching for an item in a large tuple is slow. Each item must be checked |
+| common methods | `Can’t add or remove from tuples |
+| order preserved? | Yes. Items can be accessed by index. |
+| mutable? | No |
+| in-place sortable?| No |
+
+getting multiple itens from the tuple:
+
+```
+student = ("Paula", 34, "Philosophers", 100)
+name, age, project, grade = student
+```
+
+## Set
+
+mutable datatype to store **immutable** types in an unsorted way
+
+no duplicates allowed
+
+empty set must be created with `set()` cause `{}` will create a dict
+
+[Set cheat sheet](https://practical.learnpython.dev/03_sets_tuples_dicts/20_sets/) by Nina Zakharenko
+
+| type | set |
+| ---- | ---- |
+| use | Used for storing immutable data types uniquely. Easy to compare the items in sets |
+| creation | `set()` for an empty set (`{}` makes an empty `dict`) and `{1, 2, 3}` for a set with items in it|
+| search methods | `item in my_set` |
+| search speed | Searching for an item in a large set is very fast |
+| common methods | `my_set.add(item)`, `my_set.discard(item)` to remove the item if it’s present, `my_set.update(other_set)` |
+| order preserved? | No. Items can’t be accessed by index. |
+| mutable? | Yes. Can add to or remove from sets. |
+| in-place sortable?| No, because items aren’t ordered. |
+
 
 ## Helpufull REPL methods
 
@@ -144,3 +200,5 @@ typeof() is `type()`
 `dir()` shows all the methods available for the given parameter (str, int, variables names, etc)
 
 `help()` pass a class as parameter or a method (str.replace)
+
+`hash(var)` is a shortcut to check for mutability, hash with mutable types will raise an error
