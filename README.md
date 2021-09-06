@@ -95,6 +95,7 @@ string method `.replace` replace the char(s) passed as first parameter for the c
 ## List
 
 Lists are one of the most powerful data types in Python. They’re used to store related items together.
+Lists are **mutable**
 
 [List cheat sheet](https://practical.learnpython.dev/02_data_types/30_lists/) by Nina Zakharenko
 
@@ -144,13 +145,15 @@ Font: [this article](https://learnpython.com/blog/python-array-vs-list/) by Kate
 
 ## Tuple
 
-tuples are immutable
+tuples are **immutable**
 
 [Tuplecheat sheet](https://practical.learnpython.dev/03_sets_tuples_dicts/10_tuples/) by Nina Zakharenko
 
 ```
 Tuples are light-weight collections used to keep track of related, but different items.
-While lists are generally used to store collections of similar items together, tuples, by contrast, can be used to contain a snapshot of data. A good use of a tuple might be for storing the information for a row in a spreadsheet. We don’t necessarily care about updating or manipulating that data, we just want a read-only snapshot.
+While lists are generally used to store collections of similar items together, tuples, by contrast, can be used to contain a snapshot of data. 
+A good use of a tuple might be for storing the information for a row in a spreadsheet. 
+We don’t necessarily care about updating or manipulating that data, we just want a read-only snapshot.
 ```
 
 | type | tuple |
@@ -188,10 +191,42 @@ empty set must be created with `set()` cause `{}` will create a dict
 | search methods | `item in my_set` |
 | search speed | Searching for an item in a large set is very fast |
 | common methods | `my_set.add(item)`, `my_set.discard(item)` to remove the item if it’s present, `my_set.update(other_set)` |
-| order preserved? | No. Items can’t be accessed by index. |
-| mutable? | Yes. Can add to or remove from sets. |
-| in-place sortable?| No, because items aren’t ordered. |
+| order preserved? | **No.** Items can’t be accessed by index. |
+| mutable? | **Yes.** Can add to or remove from sets. |
+| in-place sortable?| **No**, because items aren’t ordered. |
 
+
+## Dictionaries
+
+[Dictionaries cheat sheet](https://practical.learnpython.dev/03_sets_tuples_dicts/30_dictionaries/) by Nina Zakharenko
+
+dict are **mutable** keys can only be immutable types.
+
+| type | dict |
+| ---- | ---- |
+| use | Use for storing data in key, value pairs. Keys used must be **immutable** data types. |
+| creation | `{}` or `dict()` for an empty dict. `{1: "one", 2: "two"}` for a dict with items.|
+| search methods | `key in my_dict` |
+| search speed | Searching for a key in a large dictionary is fast |
+| common methods | `my_dict[key]` to get the value by *key*, and throw a *KeyError* if *key* is not in the dictionary. Use `my_dict.get(key)` to fail silently if *key* is not in *my_dict*. `my_dict.items()` for all key, value pairs, `my_dict.keys()` for all keys, and `my_dict.values()` for all values. |
+| order preserved? | **Sort of**. As of Python 3.6 a dict is sorted by insertion order. Items can’t be accessed by index, only by key. |
+| mutable? | **Yes**. Can add to or remove from `dicts`. |
+| in-place sortable?| **No**. `dicts` don’t have an index, only keys. |
+
+`{ key : value }`
+
+`my_dict.get(key, <optional exeption>)` if the key doesn't exist, it will return the given exeption
+
+`my_dict[key] = value` to replace or insert new values
+
+`my_dict.update(my_other_dict)` like in sets
+
+if the value is, for eg, a list, we can do all the lists operations with it, as we know that py_dict[key]
+will return a list (same with objects, etc)
+
+```
+To avoid subtle bugs, we can check if a particular key is in a dictionary with the `in` keyword
+```
 
 ## Helpufull REPL methods
 
