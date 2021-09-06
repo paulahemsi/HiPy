@@ -71,6 +71,8 @@ strings are immutable
 
 `print()` prints the given(s) parameter(s) (if separated by `,`, prints puts the space for us)
 
+`from pprint import pprint` `pprint()` pretty print
+
 ```
 > > > print("hi", "you")
 hi you
@@ -237,3 +239,52 @@ typeof() is `type()`
 `help()` pass a class as parameter or a method (str.replace)
 
 `hash(var)` is a shortcut to check for mutability, hash with mutable types will raise an error
+
+## Function
+
+`def` + `function_name` + `(<optional argument> , <optional arguments> , <etc>)` + `:`
+`tab`
+
+```py
+
+def my_function():
+	print("hi")
+
+```
+
+Functions can accept arguments with or without default values.
+All of the required arguments go first. They are then followed by the optional keyword arguments (those with default values).
+
+```py
+
+def my_function(word):
+	print(word)
+
+my_function("hi")
+>>>'Hi'
+```
+
+```py
+
+def my_function(word, end="bye"):
+	print(word, end)
+
+my_function("hi,")
+>>>'Hi, bye'
+
+my_function("hi,", "tchau")
+>>>'Hi, tchau'
+```
+
+It's possible to pass arguments by name, in this case in any order cause they're labeled
+
+```py
+my_function(end="adios", word="Hola,")
+>>>'Hola, adios'
+```
+
+```
+Never use mutable types, like lists as a default argument.
+```
+
+[The Naming of Ducks: Where Dynamic Types Meet Smart Conventions Video](https://www.youtube.com/watch?v=YklKUuDpX5c)
