@@ -288,3 +288,12 @@ Never use mutable types, like lists as a default argument.
 ```
 
 [The Naming of Ducks: Where Dynamic Types Meet Smart Conventions Video](https://www.youtube.com/watch?v=YklKUuDpX5c)
+
+
+## Truthiness
+
+**ints** work like in C, **0** is `False`, all others are `True`
+
+empty **strings**, **lists**, **tuples**, **sets** or **dicts** are `False`
+
+**strings**, **lists**, **tuples**, **sets** or **dicts** with at least one value are `True`
