@@ -176,6 +176,14 @@ student = ("Paula", 34, "Philosophers", 100)
 name, age, project, grade = student
 ```
 
+with a placeholder if there'a any value I dont care at the time:
+
+```
+student = ("Paula", 34, "Philosophers", 100)
+name, age, project, _ = student
+```
+
+
 ## Set
 
 mutable datatype to store **immutable** types in an unsorted way
@@ -228,6 +236,15 @@ will return a list (same with objects, etc)
 
 ```
 To avoid subtle bugs, we can check if a particular key is in a dictionary with the `in` keyword
+```
+
+`del my_dict["element"]` deletes the element, but is preferred to use `pop` instead, since it returns the deleted value and deal better with possible errors:
+
+```
+pop(...)
+    D.pop(k[,d]) -> v, remove specified key and return the corresponding value.
+    
+    If key is not found, default is returned if given, otherwise KeyError is raised
 ```
 
 ## Helpufull REPL methods
@@ -297,3 +314,77 @@ Never use mutable types, like lists as a default argument.
 empty **strings**, **lists**, **tuples**, **sets** or **dicts** are `False`
 
 **strings**, **lists**, **tuples**, **sets** or **dicts** with at least one value are `True`
+
+`==` and `!=` check for **equality** of the contents
+
+`is` and `is not` check for **identity**, if is pointing to the same place in memory
+
+
+use `is` to check for **None** ou **True** \ **False**
+
+
+`bool(3 < 5)` answers true or false
+
+## Boolean Operators
+
+`or` == `||`
+`and` == `&&`
+`not` == `!`
+
+## Control Statements
+
+`if` `elif` `else`
+
+## Loops
+
+for loop:
+
+`for single_item in items` 
+
+`single_item` temporary loop variable, but still acessible outside the loop scope (with the last value from the iteration)
+`items` sequece of items
+
+```py
+>>> animals = ["owl", "cat", "dog", "bird"]
+>>> for animal in animals:
+	print(f"Animal: {animal}")
+	
+Animal: owl
+Animal: cat
+Animal: dog
+Animal: bird
+```
+
+`range()` produces a sequence of integers (optional -default 0- and *inclusive* start to defined *exclusive* finish)
+
+
+```py
+>>> for number in range(7, 13):
+		printf(number)
+		
+7
+8
+9
+10
+11
+12
+```
+
+In python we don't need to have an index variable to increment, enumerate function handles that
+
+```bash
+class enumerate(object)
+ |  enumerate(iterable, start=0)
+ |  
+ |  Return an enumerate object.
+ |  
+ |    iterable
+ |      an object supporting iteration
+ |  
+ |  The enumerate object yields pairs containing a count (from start, which
+ |  defaults to zero) and a value yielded by the iterable argument.
+ |  
+ |  enumerate is useful for obtaining an indexed list:
+ |      (0, seq[0]), (1, seq[1]), (2, seq[2]), ...
+```
+more info and methods in `help(enumerate)`
