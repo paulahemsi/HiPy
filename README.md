@@ -370,7 +370,7 @@ Animal: bird
 12
 ```
 
-In python we don't need to have an index variable to increment, enumerate function handles that
+In python we don't need to have an index variable to increment, enumerate function handles that, returning a list of tuples (containing the index and the item) from a sequence
 
 ```bash
 class enumerate(object)
@@ -388,3 +388,61 @@ class enumerate(object)
  |      (0, seq[0]), (1, seq[1]), (2, seq[2]), ...
 ```
 more info and methods in `help(enumerate)`
+
+```py
+>>> animals = ["owl", "cat", "dog", "bird"]
+>>> for index, animal in enumerate(animals):
+	print(f"Animal: {animal}, index: {index}")
+	
+Animal: owl, index: 0
+Animal: cat, index: 1
+Animal: dog, index: 2
+Animal: bird, index: 3
+```
+
+Looping over a dictionary with `for item in my_dict`, will loop just over the keys, but with the method `.items()` that unpacks the dictionary into a tuple, we are able to loop over keys and values
+
+```py
+>>> hex_colors = {
+		"Red": "#FF0000",
+		"Green": "#008000",
+		"Blue": "#0000FF",
+	}
+>>> for color, hex_value in hex_colors.items():
+	     print(f"For color {color}, the hex value is: {hex_value}")
+	
+For color Red, the hex value is: #FF0000
+For color Green, the hex value is: #008000
+For color Blue, the hex value is: #0000FF
+```
+
+> There's no ++ in python
+
+**True** **False** Python vs C **true** **false**
+
+```py
+for i in [0, 1, 2]:
+	print("for loop")
+```
+
+is the same of
+
+```py
+for i in range(3):
+	print("for loop")
+```
+
+cause `range` generates a list of 3 (or the number passed as parameter)
+
+List is very similar to an Array
+
+`rstrip()` function cut the withespaces from a string
+
+```py
+words = set()
+
+def load(dictionary):
+	file = open(dictionary, "r")
+	for line in file:
+		words.add(line.rstrip())
+```
