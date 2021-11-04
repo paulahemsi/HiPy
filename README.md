@@ -434,6 +434,11 @@ for i in range(3):
 
 cause `range` generates a list of 3 (or the number passed as parameter)
 
+range(0, 101, 2) will go from 0 to 100 all 2 stepts at a time
+
+`range(stop)`
+`range(start, stop[, step])`
+
 List is very similar to an Array
 
 `rstrip()` function cut the withespaces from a string
@@ -445,4 +450,138 @@ def load(dictionary):
 	file = open(dictionary, "r")
 	for line in file:
 		words.add(line.rstrip())
+```
+
+`in`
+
+```py
+from CS50 import get_string
+
+s = get_string("Do you agree? ")
+
+if s.lower() in ["y", "yes"]:
+	print("Agreed. ")
+elif s.lower() in ["n", "no"]:
+	print("Not Agreed.")
+```
+
+variables created inside a function have the whole function scope, even if they were created inside a loop
+
+```py
+from CS50 import get_int
+
+def get_positive_int():
+	while True:
+		n = get_int("Positive Integer: ")
+		if n > 0:
+			break
+	return n
+```
+
+`print` has a lot of optional arguments, like `end` to set another end character (or string) then `\n`
+or the hability of make matematical operations
+
+```py
+for i in range(4):
+	print("?". end="")
+
+>> ????
+
+
+print("?" * 4)
+
+>> ????
+```
+
+
+
+
+```py
+
+scores = [72, 73, 33]
+
+print("Average: " + str(sum(scores) / len(scores)))
+
+# same of:
+
+print(f"Average: {sum(scores) / len(scores)}") #here the str() isn't necessary cause is inside a formated string and python do the conversion to us
+
+
+```
+
+
+**Argv in python**
+
+there's no argc C, but argv is a list so we can access the len with len(argv) or iterate over all the args with `in` 
+
+```py
+from sys import argv
+
+for arg in argv:
+    print(arg)
+
+```
+
+sys package also includes the `exit` function, that works like in C
+
+Pointers are not accesible anymore, but they still exist underneath the hood
+
+```py
+x = 1
+y = 2
+
+print(f"x is {x}, y is {y}")
+
+x, y = y, x
+
+print(f"x is {x}, y is {y}")
+
+>> x is 1, y is 2
+>> x is 2, y is 1
+
+```
+
+## List Comprehensions
+
+short sintaxe for create lists looping over a list in python
+
+`[<value> for <vars> in <iter>]`
+
+```py
+pets = ["dog", "cat", "parrot", "turtle"]
+my_list = []
+for pet in pets:
+	my_list.append(len(pet))
+```
+
+is the same of:
+
+```py
+my_list = [len(pet) for pet in pets]
+
+```
+
+and with condicional:
+
+```py
+my_list = [pet for pet in pets if len(pet) % 2 == 0]
+
+```
+
+composed, generating a list of tuples:
+
+```py
+my_list = [(pet, len(pet)) for pet in pets]
+```
+
+strings operations:
+
+```py
+my_pets = ", ".join([pet for pet in pets])
+
+```
+number operations:
+
+```py
+my_sum = sum([num for num in range(0, 100) if num % 3 == 0])
 ```
