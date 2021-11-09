@@ -77,7 +77,8 @@ strings are immutable
 > > > print("hi", "you")
 hi you
 ```
-`f` concatenates the string with variables between `{}`
+
+`f` concatenates the string with variables between `{}` and can be used in any function that receives a string as argument
 
 ```
 > > > print(f"hi {number_variable}")
@@ -541,6 +542,87 @@ print(f"x is {x}, y is {y}")
 
 ```
 
+## Files
+
+`r` reading (default)
+`w` writing (truncating)
+`x` exclusive creation (fails if the file already exists)
+`a` writing (appending)
+`b` binary
+`t` text (default)
+`+` open a disk file for updating
+
+```py
+import csv
+
+file = open("phonebook.csv", "a") #a append
+
+name = get_string("Name: ") #cs50 lib
+number = get_string("Number: ") #cs50 lib
+
+writer = csv.writer(file)
+
+wirter.writerow([name, number])
+
+file.close()
+```
+
+is the same of:
+
+```py
+import csv
+
+with open("phonebook.csv", "a") as file:
+	name = get_string("Name: ") #cs50 lib
+	number = get_string("Number: ") #cs50 lib
+
+	writer = csv.writer(file)
+
+	wirter.writerow([name, number]
+# this with keyword closes the file for us
+```
+
+`with` is a context manager, wrapping the block of code that depends on some resource and cleanning up at the end, even in the case the code inside receives an exception
+
+google form with Harry Potter houses preferences
+
+```py
+import csv
+
+houses = {
+	"Gryffindor": 0,
+	"Hefflepuff": 0,
+	"Ravenclaw": 0,
+	"Slytherin": 0
+}
+
+with open("form.csv". "r") as file
+	reader = csv.reader(file)
+	next(reader) # to skip the first row (header)
+	for row in reader:
+		house = row[1] #first row field was timestamp
+		houses[house] += 1
+
+for house in houses:
+	print(f"{house}: {houses[house]}")
+```
+
+## in keyword
+
+```py
+words = input("Saying something: ").lower()
+
+if "hello" in words:
+	print("Hello to you too!")
+elif "how are you" in words:
+	print("I am well, thanks")
+elif "goodbye" in words:
+	print("Goodbye to you too!")
+else:
+	print("huh?")
+	
+```
+
 ## List Comprehensions
 
 short sintaxe for create lists looping over a list in python
@@ -584,4 +666,177 @@ number operations:
 
 ```py
 my_sum = sum([num for num in range(0, 100) if num % 3 == 0])
+```
+
+there's also **Dictionary Comprehensions**, **Set Comprehensions** and **Generator Expressions**
+
+>Generator expressions are a more advanced concept. A generator is a type of iterable object - like a list, you can iterate through each element - however, unlike a list, generators evaluate elements on demand, instead of assembling them all at once.
+
+more informations about them in [this amazing guide](https://practical.learnpython.dev/05_practical_applications/10_other_comprehensions/) by Nina Zakharenko
+
+## Slicing 
+
+easy way to create sub-lists from larger lists
+
+```py
+>>> my_string = "Hello, world!"
+>>> my_string[7:12] # from 7 to 12
+'world'
+>>> my_string[:5] # from zero to 5
+'Hello'
+>>> my_string[7:] # from 7 to the end
+'world!'
+```
+
+`my_list[:]` shortcut to make a copy, from beggining to end
+
+## Zip
+
+The zip function takes any number of iterable arguments and steps through all of them at the same time until the **end of the shortest iterable** has been reached
+
+```py
+>>> names = ["Ann", "Leah", "Martha", "Ruth"]
+>>> grades = [95, 70, 89]
+>>> for name, grade in zip(names, grades):
+>>>     print(f"{name} had a grade of {grade}")
+
+Ann had a grade of 95
+Leah had a grade of 70
+Martha had a grade of 89
+```
+zip() is very usefull to create dictionaries from two lists:
+
+```py
+>>> names = ["Ann", "Leah", "Martha"]
+>>> grades = [95, 70, 89]
+>>> student_dict: dict(zip(names, grades))
+>>> print(student_dict)
+{'Ann': 95, 'Leah': 70, 'Martha': 89}
+```
+>the result of calling the zip function is actually a generator under the hood. You can only loop over the result of zipping once. If you try to loop over it again, the result will be empty.
+
+## OOP in Python
+
+Languages that adopt an Object-oriented style organize things into objects, and provide methods for objects to communicate with one another.
+
+everything in python is an object and almost everything has attributes and methods
+
+Objects are center-stage in Python, representing not only the data, but the overall structure of the programs as well
+
+## self
+
+`self` refers to an instance inside her class (like `this` in c++)
+
+```py
+class Car:
+	runs = True
+
+	def start(self): #method that requires an instance
+		if self.runs:
+			print("Car is started. Vroom vroom!")
+		else:
+			print("Car is bronken :(")
+```
+
+In C++ the instance `this` is passed as argument to all class method, but in python we need to specify if we want this behaviour or not with the keyword `self` as a parameter
+
+`TypeError: my_method() takes 0 positional arguments but 1 is given`: when we call a method in an instance without specifiyng in the method that it need to recieve `self` as parameter.
+
+## Methods
+
+`@classmethod` above a method definition defines that method as a class method, 
+and receive the class as parameter
+
+```py
+class Car:
+    runs = True
+    number_of_wheels = 4
+
+    @classmethod
+    def get_number_of_wheels(cls):
+        return cls.number_of_wheels
+
+    def start(self):
+        if self.runs:
+            print("Car is started. Vroom vroom!")
+        else:
+            print("Car is broken :(")
+
+my_car = Car()
+print(f"Cars have {Car.get_number_of_wheels()} wheels.")
+
+# Of course, we can override this in our instance:
+my_car.number_of_wheels = 6
+
+# And when we access our new instance variable:
+print(f"My car has {my_car.number_of_wheels} wheels.")
+
+# But, when we call our class method on our instance:
+print(f"My car has {my_car.get_number_of_wheels()} wheels.")
+```
+```
+output
+Cars have 4 wheels.
+My car has 6 wheels.
+My car has 4 wheels.
+```
+
+## instance
+
+`isinstance(instance, class)` to check if some variable is an instance of some class
+
+```py
+>>> isinstance(42, int)
+True
+>>> isinstance("blah", int)
+False
+```
+
+`issubclass(class_one, class_two)` to check if a class is a subclass of the other
+
+## Magic methods
+
+`__magic_method__` with two underscores before and after the method name
+
+`dunder` = double underscore
+
+`__init__` inside a class works like a constructor, beeing called when an instance is created
+
+```py
+class My_class:
+
+    def __init__(self, name, number):
+        self.name = name
+        self.number = number
+```
+
+`__str__` return a string in a readable way of that object
+`__repr__` return a string with the python code necessary to rebuild that object
+
+```py
+>>> import datetime
+>>> now = datetime.datetime.now()
+>>> str(now)
+'2019-03-16 21:04:01.396256'
+>>> repr(now)
+'datetime.datetime(2019, 3, 16, 21, 4, 1, 396256)'
+```
+
+Is interesting to also set those methods in our custom classes
+
+## Inheritance
+
+```py
+
+class Baseclass:
+
+	def __init__(self, var1, var2, var3="default")
+		self.var1 = var1
+		self.var2 = var2
+		self.var3 = var3
+
+class Subclass(Baseclass):
+	
+	def __init__(self, var1, var2, var3="default")
+		super().__init__(var1, var2, var3)
 ```
